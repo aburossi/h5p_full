@@ -77,6 +77,10 @@ def main():
         
         if package:
             st.download_button("Download H5P Package", data=package, file_name=filename, mime="application/zip")
+
+            # ⚠️ Warning about Lumi Desktop
+            st.warning("⚠️ This H5P file **does NOT work with Lumi Desktop**. Please use an alternative H5P player or a compatible LMS.")
+
         else:
             st.error("Failed to generate H5P package.")
     
