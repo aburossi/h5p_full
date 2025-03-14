@@ -3,28 +3,45 @@ import json
 from pathlib import Path
 from simple_questions import process_simple_question_set
 from media_quiz import process_media_quiz
+import streamlit.components.v1 as components
 
 def main():
     st.title("H5P Package Generator - Orchestrator")
-    st.write("Select the type of H5P package you want to generate.")
-
-    mode = st.sidebar.radio("Select H5P Package Type", ["Simple Question Set", "Media Quiz"])
     
-    # Common inputs
-    title = st.sidebar.text_input("Title", "Generated Quiz")
-    randomization = st.sidebar.checkbox("Randomize Questions", True)
-    pool_size = st.sidebar.slider("Number of Questions per Round", min_value=1, max_value=20, value=7)
-    pass_percentage = st.sidebar.selectbox("Passing Percentage", options=[50, 60, 66, 75, 100], index=1)
-    user_image_file = st.sidebar.file_uploader("Upload Title Image", type=["png", "jpg", "jpeg"])
+    # Explanation text with GPT link
+    st.markdown("""
+    **Generate JSON Content using GPT:**  
+    Content for the package generator may be created using GPT.  
+    [Generate JSON formats for specific content here](https://chatgpt.com/g/g-67738981e5e081919b6fc8e93e287453-h5p-mf-tf)
+    """)
+    
+    # Step-by-step guide with emoji numbers in the main area
+    st.markdown("""
+    **Steps to Generate Your H5P Package:**  
+    1️⃣ **Select H5P Package Type:** Choose either *Simple Question Set* or *Media Quiz* from the sidebar.  
+    2️⃣ **Provide Package Details:** Enter the title, randomization settings, number of questions per round, and passing percentage.  
+    3️⃣ **For Media Quiz (if selected):** Enter the media type and its URL.  
+    4️⃣ **Paste JSON Content:** Input the JSON content (which can be generated using GPT) into the text area.  
+    5️⃣ **Generate Package:** Click the *Generate H5P Package* button to download your package.
+    """)
+    
+    # Sidebar elements with corresponding emojis
+    mode = st.sidebar.radio("1️⃣ Select H5P Package Type", ["Simple Question Set", "Media Quiz"])
+    
+    title = st.sidebar.text_input("2️⃣ Title", "Generated Quiz")
+    randomization = st.sidebar.checkbox("2️⃣ Randomize Questions", True)
+    pool_size = st.sidebar.slider("2️⃣ Number of Questions per Round", min_value=1, max_value=20, value=7)
+    pass_percentage = st.sidebar.selectbox("2️⃣ Passing Percentage", options=[50, 60, 66, 75, 100], index=1)
+    user_image_file = st.sidebar.file_uploader("2️⃣ Upload Title Image", type=["png", "jpg", "jpeg"])
     user_image_bytes = user_image_file.read() if user_image_file else None
 
-    json_input = st.text_area("Paste JSON Content", height=300, help="JSON format generated from your questions.")
-    
     if mode == "Media Quiz":
-        media_type = st.radio("Select Media Type", ["video", "audio"])
-        media_url = st.text_input(f"Enter {media_type.capitalize()} URL")
+        media_type = st.radio("3️⃣ Select Media Type", ["video", "audio"])
+        media_url = st.text_input(f"3️⃣ Enter {media_type.capitalize()} URL")
     
-    if st.button("Generate H5P Package"):
+    json_input = st.text_area("4️⃣ Paste JSON Content", height=300, help="JSON format generated from your questions.")
+    
+    if st.button("5️⃣ Generate H5P Package"):
         if not json_input.strip():
             st.error("Please provide JSON content.")
             return
@@ -47,6 +64,10 @@ def main():
             st.download_button("Download H5P Package", data=package, file_name=filename, mime="application/zip")
         else:
             st.error("Failed to generate H5P package.")
+    
+    # Embed the README in a dropdown (expander) with an iframe
+    with st.expander("Show README Guide"):
+        components.iframe("https://github.com/aburossi/h5p_full/tree/main#readme", height=600)
 
 if __name__ == "__main__":
     main()
