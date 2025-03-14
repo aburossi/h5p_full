@@ -67,7 +67,7 @@ def main():
     
     # Embed the README in a dropdown (expander) with an iframe
     with st.expander("Show README Guide"):
-        components.iframe("https://github.com/aburossi/h5p_full/tree/main#readme", height=600)
+        components.iframe("https://raw.githubusercontent.com/aburossi/h5p_full/refs/heads/main/README.md", height=600)
 
 if __name__ == "__main__":
     main()
