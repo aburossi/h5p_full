@@ -4,6 +4,9 @@ from pathlib import Path
 from simple_questions import process_simple_question_set
 from media_quiz import process_media_quiz
 
+# Set the page title and favicon
+st.set_page_config(page_title="H5P Generator", page_icon="📦")
+
 def main():
     st.title("H5P Package Generator")
 
