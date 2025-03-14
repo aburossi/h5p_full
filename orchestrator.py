@@ -34,6 +34,9 @@ def main():
     5. **Generate Package:** Click the *Generate H5P Package* button to download your package.
     """)
     
+    # Add sidebar heading
+    st.sidebar.markdown("# Sidebar")
+    
     # Sidebar elements with corresponding emojis
     mode = st.sidebar.radio("👉1️⃣ Select H5P Package Type", ["Simple Question Set", "Media Quiz"])
     
