@@ -5,7 +5,7 @@ Diese Anleitung hilft dir, die App auf **Streamlit.io** zu nutzen, um **interakt
 ---
 
 ## 🚀 **1. Öffne die App**  
-1. Besuche die gehostete **Streamlit-App** in deinem Browser. *(Den Link erhältst du vom Betreiber der App.)*  
+1. Besuche die gehostete **[Streamlit-App](https://h5p-content.streamlit.app/)** in deinem Browser.
 2. Nach dem Laden der Seite siehst du die **Benutzeroberfläche** mit verschiedenen Eingabefeldern und Auswahloptionen.
 
 ---
@@ -40,6 +40,10 @@ Wenn du **Media Quiz** gewählt hast, erscheinen weitere Felder:
 ## 📌 **4. Fragen hinzufügen (JSON-Format)**  
 Die App erwartet die **Fragen im JSON-Format**.  
 
+>💡 **Fragen automatisch generieren lassen?**  
+>Nutze diesen GPT: **[H5P MF-TF Question Generator](https://chatgpt.com/g/g-67738981e5e081919b6fc8e93e287453-h5p-mf-tf)**, um **Multiple Choice & True/False-Fragen** im richtigen Format zu erstellen! 🚀
+>Auch auf [Fobizz](https://tools.fobizz.com/ai/chats/public_assistants/fb5dfcca-6773-4da2-a468-a10daf149c42?token=969f9f7ef6be8cdabb3258da9155f943) vorhanden
+
 🔹 **Kopiere dein JSON in das Eingabefeld "Paste JSON Content"**  
 🔹 Falls du noch kein JSON hast, kannst du das folgende Beispiel als Vorlage nutzen:  
 
@@ -68,8 +72,6 @@ Die App erwartet die **Fragen im JSON-Format**.
 ```
 🔹 **Achte darauf, dass dein JSON korrekt formatiert ist**, da fehlerhafte JSON-Dateien nicht verarbeitet werden können.
 
-💡 **Fragen automatisch generieren lassen?**  
-Nutze diesen GPT: **[H5P MF-TF Question Generator](https://chatgpt.com/g/g-67738981e5e081919b6fc8e93e287453-h5p-mf-tf)**, um **Multiple Choice & True/False-Fragen** im richtigen Format zu erstellen! 🚀  
 
 ---
 
