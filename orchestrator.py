@@ -5,17 +5,23 @@ from simple_questions import process_simple_question_set
 from media_quiz import process_media_quiz
 
 def main():
-    st.title("H5P Package Generator - Orchestrator")
+    st.title("H5P Package Generator")
 
     # Dropdown with a link to the README
     with st.expander("How to Use"):
         st.markdown('<a href="https://github.com/aburossi/h5p_full/tree/main#readme" target="_blank">Bedienungsanleitung</a>', unsafe_allow_html=True)
-
+        st.markdown('<a href="https://github.com/aburossi/h5p_full/blob/main/README_en.md" target="_blank">How-To-Guide</a>', unsafe_allow_html=True)
     
     # Explanation text with GPT link
     st.markdown("""
     **Generate JSON Content using CustomGPT:**  
-    Content for the package generator may be created using this CustomGPT model [h5p-mf-tf](https://chatgpt.com/g/g-67738981e5e081919b6fc8e93e287453-h5p-mf-tf)
+    Content for the package generator may be created using this CustomGPT [h5p-mf-tf](https://chatgpt.com/g/g-67738981e5e081919b6fc8e93e287453-h5p-mf-tf) or via this [fobizz Chatbot](https://tools.fobizz.com/ai/chats/public_assistants/fb5dfcca-6773-4da2-a468-a10daf149c42?token=969f9f7ef6be8cdabb3258da9155f943).
+    """)
+
+        # Explanation text with GPT link
+    st.markdown("""
+    **Transcription:**  
+    mp3-Files can be transcribed with this app [Transcript-MP3](https://transcript-mp3.streamlit.app/).
     """)
     
     # Step-by-step guide with emoji numbers in the main area
