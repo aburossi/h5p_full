@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from simple_questions import process_simple_question_set
 from media_quiz import process_media_quiz
+import streamlit.components.v1 as components  # Added for Fobizz bot iframe
 
 # Set the page title and favicon
 st.set_page_config(page_title="H5P Generator", page_icon="📦")
@@ -21,18 +22,7 @@ def main():
     Content for the package generator may be created using this CustomGPT [h5p-mf-tf](https://chatgpt.com/g/g-67738981e5e081919b6fc8e93e287453-h5p-mf-tf) or via this [fobizz Chatbot](https://tools.fobizz.com/ai/chats/public_assistants/fb5dfcca-6773-4da2-a468-a10daf149c42?token=969f9f7ef6be8cdabb3258da9155f943).
     """)
 
-    # --- New Section for Content Generation with Second Bot ---
-    st.header("Generate content with Fobizz")
-
-    # Button to open the second bot interface.
-    if st.button("Open Fobizz"):
-        components.iframe(
-            "https://tools.fobizz.com/ai/chats/public_assistants/fb5dfcca-6773-4da2-a468-a10daf149c42?token=969f9f7ef6be8cdabb3258da9155f943", 
-            height=600,
-            scrolling=True
-        )
-
-        # Explanation text with GPT link
+    # Explanation text with GPT link
     st.markdown("""
     **Transcription:**  
     mp3-Files can be transcribed with this app [Transcript-MP3](https://transcript-mp3.streamlit.app/).
@@ -95,6 +85,16 @@ def main():
         else:
             st.error("Failed to generate H5P package.")
     
+    # --- New Section for Content Generation with Second Bot ---
+    st.header("Generate content with Fobizz")
+
+    # Button to open the second bot interface.
+    if st.button("Open Fobizz"):
+        components.iframe(
+            "https://tools.fobizz.com/ai/chats/public_assistants/fb5dfcca-6773-4da2-a468-a10daf149c42?token=969f9f7ef6be8cdabb3258da9155f943",
+            height=600,
+            scrolling=True
+        )
 
 if __name__ == "__main__":
     main()
