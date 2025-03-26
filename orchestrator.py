@@ -53,7 +53,7 @@ def main():
         
         # Transcript explanation for YouTube videos
         if media_type == "video":
-            st.markdown("**Note:** For YouTube videos, you can fetch the transcript below using the provided button.")
+            st.markdown("**Note:** For YouTube videos, ~you can fetch the transcript below using the provided button.~ you need to clone the repo and run the Streamlit app locally")
 
         # Transcript fetching section (only for video)
         if media_type == "video" and media_url:
