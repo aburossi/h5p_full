@@ -18,11 +18,6 @@ Nutzen Sie den **Custom GPT** [H5P MF-TF Question Generator](https://chatgpt.com
   - **True/False**:
     - 3 Fragen auf **Bloom-Level "Erinnern"**
     - 3 Fragen auf **Bloom-Level "Verstehen"**
-- Format: JSON mit korrekter Struktur und <p>-Tags für Fragen
-
-**Beispielausgabe:**
-- Im JSON-Format
-- In einem Codeblock
 
 > 📌 **Wichtig:**  
 > Nach dem Generieren den vollständigen JSON-Code kopieren und im nächsten Schritt einfügen.
@@ -63,11 +58,8 @@ In der linken Seitenleiste:
 
 ## 📝 5. JSON-Fragen einfügen
 
-1. Fügen Sie den generierten JSON-Code in das Feld **"Paste JSON Content"** ein.
-2. Achten Sie auf:
-   - korrekte Struktur
-   - vollständige Anzahl an Fragen (16)
-   - gültige Medien-URLs (falls vorhanden)
+Fügen Sie den generierten JSON-Code in das Feld **"Paste JSON Content"** ein.
+
 
 ---
 
@@ -77,7 +69,7 @@ In der linken Seitenleiste:
 2. Nach erfolgreicher Erstellung erscheint **"Download H5P Package"**.
 3. Laden Sie die `.h5p`-Datei herunter.
 
-> ⚠️ **Hinweis:** Diese Datei ist **nicht mit Lumi Desktop** kompatibel. Nutzen Sie Moodle, WordPress oder H5P.com.
+> ⚠️ **Hinweis:** Diese Datei ist **nicht mit Lumi Desktop** kompatibel. Nutzen Sie Moodle, WordPress oder [lumi.education](https://app.lumi.education/).
 
 ---
 
@@ -85,6 +77,7 @@ In der linken Seitenleiste:
 
 Sie können die `.h5p`-Datei in folgenden Plattformen verwenden:
 
+- [lumi.education](https://app.lumi.education/)
 - **Moodle** (mit H5P-Plugin)
 - **WordPress** (mit H5P-Plugin)
 - **H5P.com** (direkter Upload)
@@ -93,7 +86,6 @@ Sie können die `.h5p`-Datei in folgenden Plattformen verwenden:
 
 ## ℹ️ Zusätzliche Tools
 
-- **JSON validieren:** [https://jsonlint.com](https://jsonlint.com)
 - **Alternative GPT-Instanz:** [Fobizz AI Bot](https://tools.fobizz.com/ai/chats/public_assistants/fb5dfcca-6773-4da2-a468-a10daf149c42?token=969f9f7ef6be8cdabb3258da9155f943)
 
 ---
