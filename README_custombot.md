@@ -6,7 +6,7 @@ Diese Anleitung beschreibt den Workflow zur Erstellung von interaktiven H5P-Quiz
 
 ## 🧠 1. Fragen mit dem Custom GPT generieren
 
-Nutzen Sie den **Custom GPT** [H5P MF-TF Question Generator](https://chatgpt.com/g/g-67738981e5e081919b6fc8e93e287453-h5p-mf-tf), um ein vollständiges Set an Fragen zu erstellen.
+Nutzen Sie den **Custom GPT** [H5P MF-TF Question Generator](https://chatgpt.com/g/g-6804997575948191acd2d7acfebf1c3d-h5p-mc-t-f), um ein vollständiges Set an Fragen zu erstellen.
 
 ### Vorgaben an den GPT:
 
