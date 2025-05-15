@@ -23,7 +23,7 @@ def main():
     
     st.markdown("""
     **Transcription:**  
-    mp3-Files can be transcribed with this app [Transcript-MP3](https://transcript-mp3.streamlit.app/).
+    mp3-Files can be transcribed with this app [-MP3](https://-mp3.streamlit.app/).
     """)
     
     st.markdown("""
@@ -31,7 +31,7 @@ def main():
     1. **Select H5P Package Type:** Choose either *Simple Question Set* or *Media Quiz* from the sidebar.  
     2. **Provide Package Details:** Enter the title, randomization settings, number of questions per round, and passing percentage.  
     3. **For Media Quiz (if selected):** Enter the media type and its URL.  
-       *For YouTube videos, you can fetch the transcript below.*  
+       *~For YouTube videos, you can fetch the transcript below.~*  
     4. **Paste JSON Content:** Input the JSON content (which can be generated using GPT) into the text area.  
     5. **Generate Package:** Click the *Generate H5P Package* button to download your package.
     """)
@@ -53,7 +53,7 @@ def main():
         
         # Transcript explanation for YouTube videos
         if media_type == "video":
-            st.markdown("**Note:** For YouTube videos, you can fetch the transcript below using the provided button.")
+            st.markdown("**Note:** For YouTube videos, ~you can fetch the transcript below using the provided button~. you need to clone the repo and run the Streamlit app locally.")
 
         # Transcript fetching section (only for video)
         if media_type == "video" and media_url:
