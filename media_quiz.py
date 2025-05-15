@@ -3,24 +3,28 @@ from pathlib import Path
 import streamlit as st
 from utils import extract_youtube_id, map_questions_to_h5p, create_h5p_package
 
-def create_media_content(h5p_questions, media_url, media_type, title, randomization, pool_size, pass_percentage):
-    if media_type == "video":
-        intro_text = "<p>Schauen Sie das Video und beantworten Sie die Verständnisfragen unterhalb des Videos</p>"
-    else:
-        intro_text = "<p>Hören Sie den Audiobeitrag und beantworten Sie die Verständnisfragen.</p>"
+def create_media_content(h5p_questions, media_url, media_type, title, randomization, pool_size, pass_percentage, custom_intro_text=None):
+    # Use custom_intro_text if provided and not empty, otherwise use defaults
+    if custom_intro_text:
+        intro_text_to_use = custom_intro_text
+    elif media_type == "video":
+        intro_text_to_use = "<p>Schauen Sie das Video und beantworten Sie die Verständnisfragen unterhalb des Videos</p>"
+    else: # audio
+        intro_text_to_use = "<p>Hören Sie den Audiobeitrag und beantworten Sie die Verständnisfragen.</p>"
+    
     content_list = []
     intro_block = {
         "content": {
-            "params": {"text": intro_text},
+            "params": {"text": intro_text_to_use}, # Use the determined intro text
             "library": "H5P.AdvancedText 1.1",
             "metadata": {
                 "contentType": "Text",
                 "license": "U",
-                "title": "Intro Text",
+                "title": "Intro Text", # This title is for the H5P content block itself
                 "authors": [],
                 "changes": []
             },
-            "subContentId": "intro-" + title
+            "subContentId": "intro-" + title # Ensure title here refers to the quiz title for uniqueness
         },
         "useSeparator": "auto"
     }
@@ -69,11 +73,11 @@ def create_media_content(h5p_questions, media_url, media_type, title, randomizat
                     "changes": [],
                     "extraTitle": "Video Content"
                 },
-                "subContentId": "media-" + title
+                "subContentId": "media-" + title # Ensure title here refers to the quiz title
             },
             "useSeparator": "auto"
         }
-    else:
+    else: # audio
         media_block = {
             "content": {
                 "params": {
@@ -100,7 +104,7 @@ def create_media_content(h5p_questions, media_url, media_type, title, randomizat
                     "changes": [],
                     "extraTitle": "Audio Content"
                 },
-                "subContentId": "media-" + title
+                "subContentId": "media-" + title # Ensure title here refers to the quiz title
             },
             "useSeparator": "auto"
         }
@@ -114,7 +118,7 @@ def create_media_content(h5p_questions, media_url, media_type, title, randomizat
                 "introPage": {
                     "showIntroPage": True,
                     "startButtonText": "Quiz starten",
-                    "title": title,
+                    "title": title, # This is the title displayed on the intro page of the QuestionSet
                     "introduction": (
                         f"<p style='text-align:center'><strong>Starten Sie das Quiz zu diesem {'Video' if media_type == 'video' else 'Audio'}inhalt.</strong></p>"
                         f"<p style='text-align:center'>Es werden zufällig {pool_size} Fragen angezeigt.</p>"
@@ -172,11 +176,11 @@ def create_media_content(h5p_questions, media_url, media_type, title, randomizat
             "metadata": {
                 "contentType": "Question Set",
                 "license": "U",
-                "title": title,
+                "title": title, # This is the metadata title for the QuestionSet
                 "authors": [],
                 "changes": []
             },
-            "subContentId": "qs-" + title
+            "subContentId": "qs-" + title # Ensure title here refers to the quiz title
         }
     }
     content_list.append(question_set)
@@ -187,17 +191,39 @@ def process_media_quiz(media_url, media_type, json_data, template_zip_path, titl
         if not isinstance(json_data, dict):
             st.error("Invalid JSON data format.")
             return None
+        
+        # Extract questions
         questions = json_data.get("questions", [])
         if not isinstance(questions, list) or not questions:
             st.error("No questions found or questions is not a list.")
             return None
+            
+        # Extract custom intro text (optional)
+        custom_intro_text = json_data.get("customIntroText") # This will be None if the key doesn't exist or the value is null
+
         h5p_questions = map_questions_to_h5p(questions, "Media_Quiz")
         if not h5p_questions:
             st.error("No valid questions mapped.")
             return None
-        content = create_media_content(h5p_questions, media_url, media_type, title, randomization, pool_size, pass_percentage)
+        
+        # Pass the custom_intro_text to create_media_content
+        # Note: The 'title' argument passed here is from the Streamlit sidebar.
+        # If you want the title from the JSON to be used, you'd need to extract json_data.get("title")
+        # and decide how it interacts with the sidebar 'title'. For now, custom_intro_text is the focus.
+        content = create_media_content(
+            h5p_questions, 
+            media_url, 
+            media_type, 
+            title, # This 'title' comes from the Streamlit UI
+            randomization, 
+            pool_size, 
+            pass_percentage,
+            custom_intro_text=custom_intro_text # Pass the extracted custom text
+        )
+        
         if content is None:
             return None
+            
         content_json_str = json.dumps(content, ensure_ascii=False, indent=4)
         package = create_h5p_package(content_json_str, template_zip_path, title, "H5P.Column", user_image_bytes)
         return package
