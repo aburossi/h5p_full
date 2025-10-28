@@ -21,7 +21,7 @@ def main():
     """)
     
     st.markdown("""
-    **Transcription:** mp3-Files can be transcribed with this app [-MP3](https://-mp3.streamlit.app/).
+    **Transcription:** mp3-Files can be transcribed with this [app](https://transcript-mp3.streamlit.app/) or in [fobizz transcription generator](https://app.fobizz.com/ai/converters?outputKind=transcript).
     """)
     
     st.markdown("""
