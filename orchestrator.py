@@ -17,22 +17,18 @@ def main():
         st.markdown('<a href="https://github.com/aburossi/h5p_full/blob/main/README_en.md" target="_blank">How-To-Guide</a>', unsafe_allow_html=True)
     
     st.markdown("""
-    **Generate JSON Content using CustomGPT:**  
-    Content for the package generator may be created using this CustomGPT [h5p-mf-tf](https://chatgpt.com/g/g-67738981e5e081919b6fc8e93e287453-h5p-mf-tf) or via this [fobizz Chatbot](https://tools.fobizz.com/ai/chats/public_assistants/fb5dfcca-6773-4da2-a468-a10daf149c42?token=969f9f7ef6be8cdabb3258da9155f943).
+    **Generate JSON Content using CustomGPT:** Content for the package generator may be created using this CustomGPT [h5p-mf-tf](https://chatgpt.com/g/g-67738981e5e081919b6fc8e93e287453-h5p-mf-tf) or via this [fobizz Chatbot](https://tools.fobizz.com/ai/chats/public_assistants/fb5dfcca-6773-4da2-a468-a10daf149c42?token=969f9f7ef6be8cdabb3258da9155f943).
     """)
     
     st.markdown("""
-    **Transcription:**  
-    mp3-Files can be transcribed with this app [-MP3](https://-mp3.streamlit.app/).
+    **Transcription:** mp3-Files can be transcribed with this app [-MP3](https://-mp3.streamlit.app/).
     """)
     
     st.markdown("""
-    **In the sidebar, follow these steps to generate your H5P package:**  
-    1. **Select H5P Package Type:** Choose either *Simple Question Set* or *Media Quiz* from the sidebar.  
+    **In the sidebar, follow these steps to generate your H5P package:** 1. **Select H5P Package Type:** Choose either *Simple Question Set* or *Media Quiz* from the sidebar.  
     2. **Provide Package Details:** Enter the title, randomization settings, number of questions per round, and passing percentage.  
     3. **For Media Quiz (if selected):** Enter the media type and its URL.  
-       *~For YouTube videos, you can fetch the transcript below.~*  
-    4. **Paste JSON Content:** Input the JSON content (which can be generated using GPT) into the text area.  
+       *~For YouTube videos, you can fetch the transcript below.~* 4. **Paste JSON Content:** Input the JSON content (which can be generated using GPT) into the text area.  
     5. **Generate Package:** Click the *Generate H5P Package* button to download your package.
     """)
 
@@ -100,7 +96,25 @@ def main():
             height=600,
             scrolling=True
         )
-    
+
+    # --- START: Added Example Section ---
+    st.header("Example Package")
+    st.markdown(
+        "👀 Here is an example of a **Media Quiz** package generated from a YouTube transcript, viewable on Lumi:"
+    )
+    st.markdown(
+        '<a href="https://app.Lumi.education/run/LM0hpz" target="_blank">https://app.Lumi.education/run/LM0hpz</a>',
+        unsafe_allow_html=True
+    )
+
+    with st.expander("Click to view the embedded example"):
+        iframe_html = """
+        <iframe src="https://app.lumi.education/api/v1/run/LM0hpz/embed" width="100%" height="720" frameborder="0" allowfullscreen="allowfullscreen" allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe>
+        <script src="https://app.Lumi.education/api/v1/h5p/core/js/h5p-resizer.js" charset="UTF-8"></script>
+        """
+        components.html(iframe_html, height=730)  # Height set slightly larger than iframe to fit
+    # --- END: Added Example Section ---
+
     # JSON input for quiz questions
     json_input = st.text_area("👉4️⃣ Paste JSON Content", height=300, help="JSON format generated from your questions.")
     
@@ -121,6 +135,9 @@ def main():
             filename = "simple_question_set.h5p"
         else:
             template_path = Path(__file__).parent / "templates" / "col_vid_mc_tf.zip"
+            if not media_url:
+                st.error("Please provide a media URL for the Media Quiz.")
+                return
             package = process_media_quiz(media_url, media_type, json_data, template_path, title, randomization, pool_size, pass_percentage, user_image_bytes)
             filename = "media_quiz.h5p"
         
